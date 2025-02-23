@@ -21,7 +21,7 @@ var (
 )
 
 func init() {
-	flag.StringVar(&todoFile, "FILE", todoFile, "Todo file used")
+	flag.StringVar(&todoFile, "f", todoFile, "Todo file used")
 	flag.Parse()
 	var err error
 	todos, err = LoadTodos(todoFile)
