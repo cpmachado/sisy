@@ -1,0 +1,18 @@
+{{- if .Completed -}}
+[x]
+{{- else -}}
+[ ]
+{{- end -}}
+{{.Title}}
+{{ if .Priority -}}
+- Priority: ({{.Priority}})
+{{ end -}}
+{{ if gt (len .Projects) 0 -}}
+- Project: {{ range .Projects }} +{{.}}{{ end }}
+{{ end -}}
+{{ if gt (len .Contexts) 0 -}}
+- Context: {{ range .Contexts }} @{{.}}{{ end }}
+{{ end -}}
+{{ if .HasDueDate -}}
+- Due: {{.DueDate.Format "2006-01-02"}}
+{{ end -}}
