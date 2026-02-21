@@ -1,14 +1,19 @@
-build:
-	go build ./cmd/sisy
+SRC=$(wildcard **/*.go)
+BIN=sisy
+
+build: ${BIN}
+	@echo sisy built
+
+${BIN}: ${SRC}
+	go build -o ${BIN} ./cmd/sisy
 
 clean:
-	rm -f sisy
+	rm -f ${BIN}
 
 lint:
-	golangci-lint run .
+	golangci-lint run ./...
 
-setup:
-	go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.64.5
-	go install golang.org/x/vuln/cmd/govulncheck@latest
+test:
+	go test -v -cover ./...
 
-.PHONY: build clean lint setup
+.PHONY: build clean lint test
