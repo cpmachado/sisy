@@ -12,6 +12,11 @@ type Task struct {
 	Tags         []Tag      `json:"tags"`
 }
 
+type RecurringTask struct {
+	Current *Task `json:"current"`
+	Next    func(Task) Task
+}
+
 type TimeBlock struct {
 	Start *time.Time `json:"start"`
 	End   *time.Time `json:"end"`
