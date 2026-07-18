@@ -1,7 +1,7 @@
 package todotxt
 
 // extension parser definition
-type Extension struct {
+type CustomTag struct {
 	Key   string
 	Value string
 }
