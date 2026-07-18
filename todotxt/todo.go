@@ -2,8 +2,8 @@ package todotxt
 
 import "time"
 
-// task definition
-type Task struct {
+// Todo definition
+type Todo struct {
 	Complete       *bool
 	Priority       *Priority
 	CompletionDate *time.Time
