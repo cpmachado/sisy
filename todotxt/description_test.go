@@ -14,33 +14,28 @@ func TestDescription_String(t *testing.T) {
 			name: "one context",
 			want: "Thank Mom for the meatballs @phone",
 			description: Description{
-				Text:           "Thank Mom for the meatballs",
-				ProjectContext: []string{"phone"},
+				Text: "Thank Mom for the meatballs @phone",
 			},
 		},
 		{
 			name: "one tag one context",
 			want: "Schedule Goodwill pickup +GarageSale @phone",
 			description: Description{
-				Text:           "Schedule Goodwill pickup",
-				ProjectTags:    []string{"GarageSale"},
-				ProjectContext: []string{"phone"},
+				Text: "Schedule Goodwill pickup +GarageSale @phone",
 			},
 		},
 		{
 			name: "one tag",
 			want: "Post signs around the neighborhood +GarageSale",
 			description: Description{
-				Text:        "Post signs around the neighborhood",
-				ProjectTags: []string{"GarageSale"},
+				Text: "Post signs around the neighborhood +GarageSale",
 			},
 		},
 		{
-			name: "context and then text?",
+			name: "context interpolated with text",
 			want: "@GroceryStore pies",
 			description: Description{
-				Text:           "pies",
-				ProjectContext: []string{"GroceryStore"},
+				Text: "@GroceryStore pies",
 			},
 		},
 	}
