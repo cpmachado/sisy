@@ -30,5 +30,5 @@ func (d *Description) String() string {
 		sb.WriteString(tag.String())
 	}
 
-	return d.Text
+	return sb.String()
 }
