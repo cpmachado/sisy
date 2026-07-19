@@ -11,11 +11,36 @@ func TestDescription_String(t *testing.T) {
 		description Description
 	}{
 		{
-			name: "base",
+			name: "one context",
 			want: "Thank Mom for the meatballs @phone",
 			description: Description{
 				Text:           "Thank Mom for the meatballs",
 				ProjectContext: []string{"phone"},
+			},
+		},
+		{
+			name: "one tag one context",
+			want: "Schedule Goodwill pickup +GarageSale @phone",
+			description: Description{
+				Text:           "Schedule Goodwill pickup",
+				ProjectTags:    []string{"GarageSale"},
+				ProjectContext: []string{"phone"},
+			},
+		},
+		{
+			name: "one tag",
+			want: "Post signs around the neighborhood +GarageSale",
+			description: Description{
+				Text:        "Post signs around the neighborhood",
+				ProjectTags: []string{"GarageSale"},
+			},
+		},
+		{
+			name: "context and then text?",
+			want: "@GroceryStore pies",
+			description: Description{
+				Text:           "pies",
+				ProjectContext: []string{"GroceryStore"},
 			},
 		},
 	}
