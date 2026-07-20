@@ -1,6 +1,7 @@
 package todotxt
 
 import (
+	"maps"
 	"slices"
 	"testing"
 )
@@ -153,6 +154,64 @@ func TestDescription_ContextTags(t *testing.T) {
 
 			if !slices.Equal(got, want) {
 				t.Errorf("ContextTags() = %v, want %v", got, want)
+			}
+		})
+	}
+}
+
+func TestDescription_Special(t *testing.T) {
+	tests := []struct {
+		name        string // description of this test case
+		want        map[string]string
+		description Description
+	}{
+		{
+			name: "one context",
+			want: nil,
+			description: Description{
+				Text: "Thank Mom for the meatballs @phone",
+			},
+		},
+		{
+			name: "one tag one context",
+			want: nil,
+			description: Description{
+				Text: "Schedule Goodwill pickup +GarageSale @phone",
+			},
+		},
+		{
+			name: "one tag",
+			want: nil,
+			description: Description{
+				Text: "Post signs around the neighborhood +GarageSale",
+			},
+		},
+		{
+			name: "context interpolated with text",
+			want: nil,
+			description: Description{
+				Text: "@GroceryStore pies",
+			},
+		},
+		{
+			name: "context interpolated with text, with a special",
+			want: map[string]string{"due": "2016-05-30"},
+			description: Description{
+				Text: "@GroceryStore pies due:2016-05-30",
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			// given
+			description := tt.description
+			want := tt.want
+
+			// when
+			got := description.Special()
+
+			if !maps.Equal(got, want) {
+				t.Errorf("Special() = %v, want %v", got, tt.want)
 			}
 		})
 	}
