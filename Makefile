@@ -8,12 +8,12 @@ ${BIN}: ${SRC}
 	go build -o ${BIN} ./cmd/sisy
 
 clean:
-	rm -f ${BIN}
+	rm -f ${BIN} cover.out
 
 lint:
 	golangci-lint run ./...
 
 test:
-	go test -v -cover ./...
+	go test -v -cover -coverprofile=cover.out ./...
 
 .PHONY: build clean lint test
