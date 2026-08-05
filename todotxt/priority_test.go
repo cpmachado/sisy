@@ -8,9 +8,10 @@ func TestPriority_String(t *testing.T) {
 	tests := []struct {
 		name string // description of this test case
 		want string
-		p    Priority
+		p    *Priority
 	}{
-		{name: "a", want: "(a)", p: Priority('a')},
+		{name: "a", want: "(a)", p: NewPriority('a')},
+		{name: "nil", want: "", p: nil},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

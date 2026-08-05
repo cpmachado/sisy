@@ -12,35 +12,40 @@ type Description struct {
 }
 
 func (d *Description) String() string {
+	if d == nil {
+		return ""
+	}
 	return d.Text
 }
 
 func (d *Description) ProjectTags() []string {
-	if !d.parsed {
-		parseDescription(d)
+	if d == nil {
+		return nil
 	}
+	d.parseDescription()
 
 	return d.project
 }
 
 func (d *Description) ContextTags() []string {
-	if !d.parsed {
-		parseDescription(d)
+	if d == nil {
+		return nil
 	}
+	d.parseDescription()
 
 	return d.context
 }
 
 func (d *Description) Special() map[string]string {
-	if !d.parsed {
-		parseDescription(d)
+	if d == nil {
+		return nil
 	}
-
+	d.parseDescription()
 	return d.special
 }
 
-func parseDescription(d *Description) {
-	if d.parsed {
+func (d *Description) parseDescription() {
+	if d == nil || d.parsed {
 		return
 	}
 	projectRE := regexp.MustCompile(`\+[^\s]+`)
