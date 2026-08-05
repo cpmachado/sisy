@@ -26,12 +26,12 @@ func (t *Todo) String() string {
 	}
 
 	if t.CompletionDate != nil {
-		sb.WriteString(t.CompletionDate.Format(time.RFC3339))
+		sb.WriteString(t.CompletionDate.Format(time.DateOnly))
 		sb.WriteString(" ")
 	}
 
 	if t.CreationDate != nil {
-		sb.WriteString(t.CompletionDate.Format(time.RFC3339))
+		sb.WriteString(t.CreationDate.Format(time.DateOnly))
 		sb.WriteString(" ")
 	}
 
