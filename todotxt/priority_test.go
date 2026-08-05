@@ -48,7 +48,7 @@ func TestNewPriority(t *testing.T) {
 			got := NewPriority(prio)
 
 			// when
-			if !want.Equal(got) {
+			if want.Cmp(got) != 0 {
 				t.Errorf("NewPriority() = %v, want %v", got, want)
 			}
 		})

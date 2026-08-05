@@ -28,6 +28,14 @@ func (p *Priority) IsValid() bool {
 	return p != nil && unicode.IsUpper(rune(*p))
 }
 
-func (p *Priority) Equal(b *Priority) bool {
-	return (p != nil && b != nil && *p == *b) || p == b
+func (p *Priority) Cmp(b *Priority) int {
+	switch {
+	case p != nil && b != nil:
+		return int(*p) - int(*b)
+	case p != nil:
+		return 1
+	case b != nil:
+		return -1
+	}
+	return 0
 }
