@@ -9,7 +9,7 @@ import (
 type Priority rune
 
 func NewPriority(prio rune) *Priority {
-	if !unicode.IsLetter(prio) {
+	if !unicode.IsUpper(prio) {
 		return nil
 	}
 	p := new(Priority)
@@ -25,7 +25,7 @@ func (p *Priority) String() string {
 }
 
 func (p *Priority) IsValid() bool {
-	return p != nil && unicode.IsLetter(rune(*p))
+	return p != nil && unicode.IsUpper(rune(*p))
 }
 
 func (p *Priority) Equal(b *Priority) bool {

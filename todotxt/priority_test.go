@@ -8,7 +8,7 @@ func TestPriority_String(t *testing.T) {
 		want string
 		p    *Priority
 	}{
-		{name: "a", want: "(a)", p: NewPriority('a')},
+		{name: "A", want: "(A)", p: NewPriority('A')},
 		{name: "invalid", want: "", p: NewPriority('1')},
 		{name: "nil", want: "", p: nil},
 	}
@@ -35,7 +35,7 @@ func TestNewPriority(t *testing.T) {
 		prio rune
 		want *Priority
 	}{
-		{name: "a", prio: 'a', want: NewPriority('a')},
+		{name: "A", prio: 'A', want: NewPriority('A')},
 		{name: "invalid", prio: '2', want: nil},
 	}
 	for _, tt := range tests {
