@@ -18,8 +18,16 @@ func NewPriority(prio rune) *Priority {
 }
 
 func (p *Priority) String() string {
-	if p == nil {
+	if !p.IsValid() {
 		return ""
 	}
 	return fmt.Sprintf("(%c)", *p)
+}
+
+func (p *Priority) IsValid() bool {
+	return p != nil && unicode.IsLetter(rune(*p))
+}
+
+func (p *Priority) Equal(b *Priority) bool {
+	return (p != nil && b != nil && *p == *b) || p == b
 }
