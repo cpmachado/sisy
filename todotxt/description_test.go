@@ -119,7 +119,7 @@ func TestDescription_ProjectTags(t *testing.T) {
 			// test double parsing
 			got2 := description.ProjectTags()
 
-			if description != nil && !slices.Equal(got, got2) {
+			if description != nil && (!slices.Equal(got, got2) || got != nil && &got[0] != &got2[0]) {
 				t.Errorf("ProjectTags() is double parsing")
 			}
 		})
@@ -177,6 +177,13 @@ func TestDescription_ContextTags(t *testing.T) {
 
 			if !slices.Equal(got, want) {
 				t.Errorf("ContextTags() = %v, want %v", got, want)
+			}
+
+			// test double parsing
+			got2 := description.ContextTags()
+
+			if description != nil && (!slices.Equal(got, got2) || got != nil && &got[0] != &got2[0]) {
+				t.Errorf("ContextTags() is double parsing")
 			}
 		})
 	}
@@ -240,6 +247,13 @@ func TestDescription_Special(t *testing.T) {
 
 			if !maps.Equal(got, want) {
 				t.Errorf("Special() = %v, want %v", got, tt.want)
+			}
+
+			// test double parsing
+			got2 := description.Special()
+
+			if description != nil && !maps.Equal(got, got2) {
+				t.Errorf("Special() is double parsing")
 			}
 		})
 	}
