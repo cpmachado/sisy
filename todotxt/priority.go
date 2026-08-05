@@ -5,8 +5,10 @@ import (
 	"unicode"
 )
 
-// priority definition
+// priority definition, uppercase letters, less is more
 type Priority rune
+
+const priorityMaxD = int('Z' - 'A')
 
 func NewPriority(prio rune) *Priority {
 	if !unicode.IsUpper(prio) {
@@ -31,11 +33,11 @@ func (p *Priority) IsValid() bool {
 func (p *Priority) Cmp(b *Priority) int {
 	switch {
 	case p != nil && b != nil:
-		return int(*p) - int(*b)
+		return int(*b) - int(*p) // less is more
 	case p != nil:
-		return 1
+		return priorityMaxD + 1
 	case b != nil:
-		return -1
+		return -priorityMaxD - 1
 	}
 	return 0
 }
