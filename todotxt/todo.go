@@ -74,14 +74,19 @@ func (t *Todo) UnmarshalText(text []byte) error {
 				}
 				nptr := nextNonSpace(10, subbuf)
 				subbuf = subbuf[nptr:]
-				tcreat, err := time.Parse(time.DateOnly, string(subbuf[:10]))
-				if err != nil {
+				if len(subbuf) > 10 {
+					tcreat, err := time.Parse(time.DateOnly, string(subbuf[:10]))
+					if err != nil {
+						t.CreationDate = &tcomp
+						ptr += 10
+					} else {
+						t.CompletionDate = &tcomp
+						t.CreationDate = &tcreat
+						ptr += nptr + 10
+					}
+				} else {
 					t.CreationDate = &tcomp
 					ptr += 10
-				} else {
-					t.CompletionDate = &tcomp
-					t.CreationDate = &tcreat
-					ptr += nptr + 10
 				}
 			}
 		case description:
