@@ -11,6 +11,14 @@ type Description struct {
 	special map[string]string
 }
 
+func (d *Description) Init(text string) {
+	d.Text = text
+	d.parsed = false
+	d.project = nil
+	d.context = nil
+	d.special = nil
+}
+
 func (d *Description) String() string {
 	if d == nil {
 		return ""
