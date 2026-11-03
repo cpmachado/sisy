@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"iter"
+	"slices"
 	"time"
 
 	"go.cpmachado.pt/sisy"
@@ -44,9 +46,13 @@ func main() {
 		},
 	}
 
+	listTodos(slices.Values(todos))
+}
+
+func listTodos(todos iter.Seq[sisy.Todo]) {
 	fmt.Println("Just listing:")
 
-	for _, todo := range todos {
+	for todo := range todos {
 		fmt.Printf("- %s: %q | %s\n", todo.CreationDate().Format(time.DateTime), todo.Status(), todo.Content())
 	}
 }
